@@ -14,6 +14,7 @@ async function toggleTodo(id: string, complete: boolean) {
 }
 
 export default async function Home() {
+  //Slap the todos into an array so we can map down it later.
   const todos = await getTodos();
 
   return (

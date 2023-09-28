@@ -4,11 +4,14 @@ import { redirect } from "next/navigation";
 
 async function handleSubmit(data: FormData) {
   "use server";
+  //Make sure there's actually text in the field.
   const title = data.get("title")?.valueOf();
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Enter value first.");
   }
+  //This one line does the whole post.
   await prisma.todo.create({ data: { title, complete: false } });
+  //Once the item has been submitted, send the user back to the homepage.
   redirect("/");
 }
 
